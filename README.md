@@ -1,77 +1,113 @@
-# Cryptocurrency Dashboard
+# TokenView Dashboard
 
-This is a cryptocurrency dashboard app built using **React 18**, **Material UI 5**, and **Chart.js 4**. The app uses the **CoinGecko API** to get cryptocurrency data such as live prices, trading volume, exchange volumes, historical data, crypto categories, images, and more.
+![GitHub last commit](https://img.shields.io/github/last-commit/rachell444/token-view)
+![GitHub repo size](https://img.shields.io/github/repo-size/rachell444/token-view)
+![API Status](https://img.shields.io/badge/API-Operacional-success)
 
-### Dark mode:
+## Descripción
 
-![plot](https://github.com/BobsProgrammingAcademy/Cryptocurrency-Dashboard/blob/main/public/dark_mode.png?raw=true)
+TokenView Dashboard es una aplicación moderna para visualizar datos de criptomonedas en tiempo real. Está diseñada con una interfaz intuitiva y gráficos interactivos que facilitan el seguimiento del mercado cripto.
 
-### Light mode:
+## Características Principales
 
-![plot](https://github.com/BobsProgrammingAcademy/Cryptocurrency-Dashboard/blob/main/public/light_mode.png?raw=true)
+- **Actualización en tiempo real**: Datos de criptomonedas actualizados cada 30 segundos
+- **Visualizaciones avanzadas**: 6 tipos de gráficos diferentes para analizar el mercado
+- **Diseño adaptable**: Interfaz responsiva que funciona en escritorio y dispositivos móviles
+- **Sistema de respaldo**: Múltiples fuentes de datos para garantizar información actualizada
+- **Modo oscuro/claro**: Soporta ambos temas para una mejor experiencia de usuario
 
-## Table of Contents
+## Tecnologías Utilizadas
 
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running the application](#run-the-application)
-- [Running the tests](#run-the-tests)
-- [Customizing the application](#customize-the-application)
-- [Copyright and License](#copyright-and-license)
+- **Frontend**: React 18, Material UI 5
+- **Visualización de datos**: Chart.js 4, react-chartjs-2
+- **Gestión de datos**: Axios para solicitudes API
+- **APIs**: CoinGecko (principal), CoinCap (respaldo)
+- **Formato de datos**: Numeral.js para formatos monetarios
 
-## Prerequisites
+## Capturas de Pantalla
 
-Install the following prerequisites:
+### Modo Oscuro
 
-1. [Node.js](https://nodejs.org/en/)
-2. [Visual Studio Code](https://code.visualstudio.com/download)
+![Dashboard en modo oscuro](public/dark_mode.png)
 
-## Installation
+### Modo Claro
 
-#### Install required dependencies
+![Dashboard en modo claro](public/light_mode.png)
 
-From the **root** directory, run:
+## Inicio Rápido
 
-```bash
-npm install
+### Prerrequisitos
+
+- Node.js (v14.0 o superior)
+- npm (v6.0 o superior)
+
+### Instalación
+
+1. Clonar el repositorio
+   ```bash
+   git clone https://github.com/rachell444/token-view.git
+   cd token-view
+   ```
+
+2. Instalar las dependencias
+   ```bash
+   npm install
+   ```
+
+3. Iniciar la aplicación
+   ```bash
+   npm start
+   ```
+
+4. Abrir http://localhost:3000 en tu navegador
+
+## Estructura del Proyecto
+
+```
+src/
+├── components/      # Componentes reutilizables
+│   ├── charts/       # Componentes de gráficos (BarChart, PieChart, etc.)
+│   ├── statistics/    # Componentes de estadísticas
+│   └── tables/        # Componentes de tablas
+├── layout/          # Componentes de estructura (Header, Sidebar, etc.)
+├── pages/           # Páginas principales
+├── theme/           # Configuración del tema (colores, tipografía)
+├── tests/           # Pruebas unitarias
+└── index.js         # Punto de entrada
 ```
 
-## Run the application
+## Personalización
 
-From the **root** directory, run:
+### Colores
+
+Para modificar los colores, edita el archivo `src/theme/theme.js`.
+
+### Tipografía
+
+Para cambiar las fuentes, añade la nueva fuente en `public/index.html` y modifica `src/theme/typography.js`.
+
+### Gráficos
+
+Los gráficos se pueden personalizar editando los archivos en `src/components/charts/`.
+
+## Pruebas
+
+Ejecuta las pruebas con el siguiente comando:
 
 ```bash
-npm start
+npm test
 ```
 
-## Run the tests
+## Contribución
 
-From the **root** directory, run:
+Las contribuciones son bienvenidas. Para cambios importantes, por favor abre primero un issue para discutir lo que te gustaría cambiar.
 
-```bash
-npm run test
-```
+## Licencia
 
-## View the application
+Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
 
-Go to http://localhost:3000/ to view the application.
+## Contacto
 
-## Customize the application
+Rachel Moron - [@rachell444](https://github.com/rachell444)
 
-This section describes how to customize the application.
-
-### Changing Colors
-
-To modify the colors in the application, make changes in the `src/theme/theme.js` file.
-
-### Changing Fonts
-
-To modify the fonts in the application, first, add a new font to the `public/index.html` file and then make changes in the `src/theme/typography.js` file.
-
-### Changing Logo
-
-To modify the logo in the application, make changes in the `src/layout/Header.js` and `src/layout/Sidebar.js` files.
-
-## Copyright and License
-
-Copyright © 2022 Bob's Programming Academy. Code released under the MIT license.
+Link del proyecto: [https://github.com/rachell444/token-view](https://github.com/rachell444/token-view)
