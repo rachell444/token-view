@@ -4,11 +4,14 @@ import Typography from '@mui/material/Typography';
 import { green } from '@mui/material/colors';
 import { alpha, useTheme } from '@mui/material/styles';
 
-const DashboardHeader = () => {
+import Header from '../layout/Header';
+
+const DashboardHeader = ({ onAboutOpen }) => {
   const theme = useTheme();
 
   return (
     <>
+      <Header onAboutOpen={onAboutOpen} />
       <Grid
         item
         alignItems='center'
@@ -56,3 +59,6 @@ const DashboardHeader = () => {
 };
 
 export default DashboardHeader;
+
+// Cambios:
+// - DashboardHeader ahora acepta y pasa onAboutOpen a Header para que el icono de About abra el modal.

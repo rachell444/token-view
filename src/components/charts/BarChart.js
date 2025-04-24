@@ -16,6 +16,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   deepPurple,
@@ -251,23 +252,12 @@ const BarChart = ({ chartData = [], loading, error }) => {
           padding: 8,
         },
         title: {
-          display: true,
-          text: 'Cryptocurrencies',
-          color: theme.palette.text.primary,
-          font: {
-            weight: 'bold',
-            size: 16,
-            family: '"Roboto", "Helvetica", "Arial", sans-serif'
-          },
-          padding: {
-            top: 20,
-            bottom: 10
-          }
+          display: false, // Ocultamos la etiqueta 'Cryptocurrencies'
         },
       },
       y: {
-        type: 'logarithmic', // Escala logarítmica para mejor visualización
-        min: minY,          // Valor mínimo ajustado para mejor visualización
+        type: 'linear', // Escala lineal para mostrar barras proporcionales al valor real
+        beginAtZero: true, // Empezar desde cero para una comparación más precisa
         grid: {
           color: alpha(theme.palette.divider, 0.1),
           borderDash: [5, 5],
@@ -280,12 +270,12 @@ const BarChart = ({ chartData = [], loading, error }) => {
             size: 12,
           },
           callback: (value) => numeral(value).format('$0,0.00'),
-          // Mostrar más marcas intermedias
-          count: 10,
+          // Ajustar la cantidad de marcas para una mejor legibilidad
+          count: 8,
         },
         title: {
           display: true,
-          text: 'Current price (logarithmic scale)',
+          text: 'Current price (USD)',
           color: theme.palette.text.primary,
           font: {
             weight: 'bold',
@@ -316,13 +306,98 @@ const BarChart = ({ chartData = [], loading, error }) => {
   };
 
   return (
-    <Card>
+    <Card
+      sx={{
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: '16px',
+        backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.background.paper, 0.9)} 0%, ${alpha(theme.palette.background.default, 0.98)} 100%)`,
+        boxShadow: `0 8px 24px 0 ${alpha(theme.palette.mode === 'dark' ? '#000' : '#000', 0.12)}`,
+        border: `1px solid ${alpha(theme.palette.divider, 0.08)}`,
+        transition: 'all 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: `0 12px 28px 0 ${alpha(theme.palette.mode === 'dark' ? '#000' : '#000', 0.15)}`,
+          border: `1px solid ${alpha(theme.palette.divider, 0.12)}`,
+        },
+        // Efectos decorativos crypto
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: -50,
+          right: -50,
+          width: 120,
+          height: 120,
+          background: theme.palette.mode === 'dark' 
+            ? `radial-gradient(circle, ${alpha(amber[500], 0.1)} 0%, transparent 70%)`
+            : `radial-gradient(circle, ${alpha(amber[500], 0.07)} 0%, transparent 70%)`,
+          borderRadius: '50%',
+          zIndex: 0,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: -30,
+          left: 20,
+          width: 80,
+          height: 80,
+          background: theme.palette.mode === 'dark' 
+            ? `radial-gradient(circle, ${alpha(deepPurple[500], 0.15)} 0%, transparent 70%)`
+            : `radial-gradient(circle, ${alpha(deepPurple[500], 0.07)} 0%, transparent 70%)`,
+          borderRadius: '50%',
+          zIndex: 0,
+        }
+      }}
+    >
       <CardHeader
-        title='Top 10 Most Expensive Cryptocurrencies'
-        subheader='Top 10 Most Expensive Cryptocurrencies Measured By Their Market Price'
+        title={
+          <Typography
+            variant='h5'
+            sx={{ 
+              fontWeight: 700, 
+              position: 'relative',
+              display: 'inline-block',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                bottom: -4,
+                left: 0,
+                width: '40px',
+                height: '3px',
+                background: `linear-gradient(90deg, ${amber[500]}, ${deepPurple[500]})`,
+                borderRadius: '8px',
+              }
+            }}
+          >
+            Top 10 Most Expensive Cryptocurrencies
+          </Typography>
+        }
+        subheader={
+          <Typography
+            variant='subtitle2'
+            sx={{ 
+              mt: 1,
+              color: alpha(theme.palette.text.secondary, 0.8),
+              fontSize: '0.875rem'
+            }}
+          >
+            Top 10 Most Expensive Cryptocurrencies Measured By Their Market Price
+          </Typography>
+        }
+        sx={{ 
+          p: 3, 
+          pb: 1,
+          '& .MuiCardHeader-action': { mr: 0 }
+        }}
       />
-      <Divider />
-      <CardContent>
+      <Box
+        sx={{
+          mx: 3,
+          height: '1px',
+          background: `linear-gradient(90deg, ${alpha(theme.palette.divider, 0)}, ${alpha(theme.palette.divider, 0.7)}, ${alpha(theme.palette.divider, 0)})`
+        }}
+      />
+      <CardContent sx={{ p: 3, position: 'relative', zIndex: 1 }}>
         <Box sx={{ height: 400, position: 'relative' }}>
           <Bar data={data} options={options} plugins={[ChartDataLabels]} />
         </Box>

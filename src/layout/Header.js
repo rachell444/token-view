@@ -39,7 +39,7 @@ import CustomButton from '../components/CustomButton';
 // 👇 Esto debe ir justo después de los imports
 library.add(faChartLine);
 
-const Header = ({ onSidebarOpen }) => {
+const Header = ({ onSidebarOpen, onAboutOpen }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const anchorRef = useRef(null);
@@ -86,54 +86,92 @@ const Header = ({ onSidebarOpen }) => {
             </Button>
           </Box>
           <Link to='/' style={{ textDecoration: 'none' }}>
-            <Box>
-              <IconButton size='large' disabled>
-                <Avatar
-                  variant='rounded'
-                  sx={{
-                    backgroundColor: deepPurple[600],
-                    height: 40,
-                    width: 40,
-                    marginRight: '15px',
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faChartLine}
-                    style={{
-                      color: '#fff',
-                      height: 30,
-                      width: 30,
-                    }}
-                  />
-                </Avatar>
-                <Typography
-                  variant='h3'
-                  component='div'
-                  sx={{
-                    flexGrow: 1,
-                    color: theme.palette.text.primary,
-                    fontWeight: 'bold',
-                    display: {
-                      md: 'inline',
-                      xs: 'none',
-                    },
-                  }}
-                >
-                  TokenView
-                </Typography>
-              </IconButton>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '12px',
+                  height: 38,
+                  width: 38,
+                  background: 'linear-gradient(135deg, #b993f4 0%, #5f72bd 100%)',
+                  boxShadow: '0 4px 12px 0 rgba(0,0,0,0.15)',
+                  mr: 1.5,
+                }}
+              >
+                <FontAwesomeIcon icon={faChartLine} style={{ fontSize: 22, color: '#fff' }} />
+              </Box>
+              <Typography
+                variant='h3'
+                component='div'
+                sx={{
+                  color: theme.palette.text.primary,
+                  fontWeight: 800,
+                  letterSpacing: '0.5px',
+                  display: { md: 'inline', xs: 'none' },
+                  position: 'relative',
+                  '& span.highlight': {
+                    color: theme.palette.primary.main,
+                    position: 'relative',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '4px',
+                      background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
+                      bottom: '-2px',
+                      left: 0,
+                      borderRadius: '8px',
+                      opacity: 0.7
+                    }
+                  }
+                }}
+              >
+                <span className="highlight">Token</span>View
+              </Typography>
             </Box>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
-          <Box
-            sx={{
-              alignItems: 'center',
-              display: { lg: 'flex', md: 'none', xs: 'none' },
-            }}
-          >
-            <CustomButton href='/' icon={<DashboardIcon />} text='Dashboard' />
-            <CustomButton href='#' icon={<HelpIcon />} text='About' />
-            <CustomButton href='#' icon={<EmailIcon />} text='Contact' />
+          <Box align="right" sx={{ flexGrow: 1, display: { md: 'flex', xs: 'none' }, justifyContent: 'flex-end' }}>
+            <Button
+              component={Link}
+              to="/"
+              startIcon={<DashboardIcon />}
+              sx={{
+                borderRadius: '8px',
+                mx: 1,
+                py: 1,
+                px: 2,
+                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
+                backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.primary.main, 0.1) : alpha(theme.palette.primary.main, 0.05),
+                '&:hover': {
+                  backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.primary.main, 0.2) : alpha(theme.palette.primary.main, 0.1),
+                },
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: '0.95rem',
+                transition: 'all 0.2s ease-in-out',
+              }}
+            >
+              Dashboard
+            </Button>
+            <IconButton
+              aria-label="About"
+              onClick={onAboutOpen}
+              sx={{
+                mx: 1,
+                color: theme.palette.text.secondary,
+                backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.secondary.main, 0.08) : alpha(theme.palette.secondary.main, 0.04),
+                borderRadius: '8px',
+                '&:hover': {
+                  backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.secondary.main, 0.16) : alpha(theme.palette.secondary.main, 0.10),
+                },
+                transition: 'all 0.2s ease-in-out',
+              }}
+            >
+              <HelpIcon />
+            </IconButton>
           </Box>
           <Divider
             orientation='vertical'
@@ -147,12 +185,21 @@ const Header = ({ onSidebarOpen }) => {
             <IconButton
               onClick={colorMode.toggleColorMode}
               aria-label='Theme Mode'
-              color={theme.palette.mode === 'dark' ? 'warning' : 'inherit'}
+              sx={{
+                backgroundColor: theme.palette.mode === 'dark' ? alpha('#FFC107', 0.1) : alpha('#5C6BC0', 0.1),
+                borderRadius: '12px',
+                padding: '10px',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  backgroundColor: theme.palette.mode === 'dark' ? alpha('#FFC107', 0.2) : alpha('#5C6BC0', 0.2),
+                  transform: 'translateY(-2px)'
+                }
+              }}
             >
               {theme.palette.mode === 'dark' ? (
-                <LightModeIcon fontSize='medium' />
+                <LightModeIcon fontSize='medium' sx={{ color: '#FFC107' }} />
               ) : (
-                <DarkModeIcon fontSize='medium' />
+                <DarkModeIcon fontSize='medium' sx={{ color: '#5C6BC0' }} />
               )}
             </IconButton>
           </Box>
@@ -201,8 +248,9 @@ const Header = ({ onSidebarOpen }) => {
                 <Typography
                   color={theme.palette.text.primary}
                   variant='subtitle2'
+                  sx={{ fontWeight: 700, fontSize: '1.08rem', letterSpacing: 0.1 }}
                 >
-                  Bob
+                  Alex
                 </Typography>
                 <Typography
                   color={theme.palette.text.secondary}
@@ -245,7 +293,30 @@ const Header = ({ onSidebarOpen }) => {
                 </MenuItem>
               </Box>
               <Box sx={{ padding: 2 }}>
-                <Button color='primary' fullWidth variant='outlined' href='#'>
+                <Button
+                  fullWidth
+                  variant='outlined'
+                  href='#'
+                  sx={{
+                    mt: 1.5,
+                    borderRadius: 2,
+                    borderWidth: 2,
+                    borderColor: 'transparent',
+                    background: 'linear-gradient(135deg, #b993f4 0%, #5f72bd 100%)',
+                    color: '#fff',
+                    fontWeight: 700,
+                    fontSize: '1rem',
+                    letterSpacing: 0.04,
+                    textTransform: 'none',
+                    boxShadow: '0 2px 8px rgba(95,114,189,0.10)',
+                    transition: 'all 0.18s cubic-bezier(.4,0,.2,1)',
+                    '&:hover': {
+                      background: 'linear-gradient(135deg, #5f72bd 0%, #b993f4 100%)',
+                      color: '#fff',
+                      boxShadow: '0 6px 18px rgba(95,114,189,0.18)'
+                    }
+                  }}
+                >
                   Logout
                 </Button>
               </Box>
@@ -260,6 +331,7 @@ const Header = ({ onSidebarOpen }) => {
 
 Header.propTypes = {
   onSidebarOpen: PropTypes.func,
+  onAboutOpen: PropTypes.func,
 };
 
 export default Header;

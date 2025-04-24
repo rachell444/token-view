@@ -18,11 +18,7 @@ const Footer = () => {
         backgroundColor={theme.palette.background.default}
         paddingTop={1}
         paddingBottom={1}
-        // sticky footer - see four values below
-        position='fixed'
-        bottom='0'
-        left='0'
-        width='100%'
+        className='footer-sticky'
       >
         <Divider />
         <Box
@@ -117,3 +113,21 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// Sugerencia: Agrega esto a App.css o al global stylesheet:
+//
+// html, body, #root {
+//   height: 100%;
+// }
+// .App {
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+// }
+// .footer-sticky {
+//   margin-top: auto;
+//   width: 100%;
+//   position: static;
+//   bottom: 0;
+//   left: 0;
+// }

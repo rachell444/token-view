@@ -9,6 +9,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme, alpha } from '@mui/material/styles';
 import { colors } from '@mui/material';
@@ -249,13 +250,98 @@ const LineChart = ({ chartData = [], loading, error }) => {
   };
 
   return (
-    <Card>
+    <Card
+      sx={{
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: '16px',
+        backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.background.paper, 0.9)} 0%, ${alpha(theme.palette.background.default, 0.98)} 100%)`,
+        boxShadow: `0 8px 24px 0 ${alpha(theme.palette.mode === 'dark' ? '#000' : '#000', 0.12)}`,
+        border: `1px solid ${alpha(theme.palette.divider, 0.08)}`,
+        transition: 'all 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: `0 12px 28px 0 ${alpha(theme.palette.mode === 'dark' ? '#000' : '#000', 0.15)}`,
+          border: `1px solid ${alpha(theme.palette.divider, 0.12)}`,
+        },
+        // Efectos decorativos crypto
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: -20,
+          right: 100,
+          width: 80,
+          height: 80,
+          background: theme.palette.mode === 'dark' 
+            ? `radial-gradient(circle, ${alpha(pink[400], 0.1)} 0%, transparent 70%)`
+            : `radial-gradient(circle, ${alpha(pink[400], 0.07)} 0%, transparent 70%)`,
+          borderRadius: '50%',
+          zIndex: 0,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: -30,
+          right: 20,
+          width: 60,
+          height: 60,
+          background: theme.palette.mode === 'dark' 
+            ? `radial-gradient(circle, ${alpha(purple[500], 0.15)} 0%, transparent 70%)`
+            : `radial-gradient(circle, ${alpha(purple[500], 0.07)} 0%, transparent 70%)`,
+          borderRadius: '50%',
+          zIndex: 0,
+        }
+      }}
+    >
       <CardHeader
-        title='Top 5 Cryptocurrencies By All-Time-Low'
-        subheader='Top 5 Cryptocurrencies Measured By Their All-Time-Low (ATL)'
+        title={
+          <Typography
+            variant='h5'
+            sx={{ 
+              fontWeight: 700, 
+              position: 'relative',
+              display: 'inline-block',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                bottom: -4,
+                left: 0,
+                width: '40px',
+                height: '3px',
+                background: `linear-gradient(90deg, ${pink[500]}, ${purple[500]})`,
+                borderRadius: '8px',
+              }
+            }}
+          >
+            Top 5 Cryptocurrencies By All-Time-Low
+          </Typography>
+        }
+        subheader={
+          <Typography
+            variant='subtitle2'
+            sx={{ 
+              mt: 1,
+              color: alpha(theme.palette.text.secondary, 0.8),
+              fontSize: '0.875rem'
+            }}
+          >
+            Top 5 Cryptocurrencies Measured By Their All-Time-Low (ATL)
+          </Typography>
+        }
+        sx={{ 
+          p: 3, 
+          pb: 1,
+          '& .MuiCardHeader-action': { mr: 0 }
+        }}
       />
-      <Divider />
-      <CardContent>
+      <Box
+        sx={{
+          mx: 3,
+          height: '1px',
+          background: `linear-gradient(90deg, ${alpha(theme.palette.divider, 0)}, ${alpha(theme.palette.divider, 0.7)}, ${alpha(theme.palette.divider, 0)})`
+        }}
+      />
+      <CardContent sx={{ p: 3, position: 'relative', zIndex: 1 }}>
         <Box sx={{ height: 400, position: 'relative' }}>
           <Line ref={chartRef} data={data} options={options} plugins={[ChartDataLabels]} />
         </Box>
