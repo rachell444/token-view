@@ -39,7 +39,7 @@ import CustomButton from '../components/CustomButton';
 
 library.add(faChartLine);
 
-const Header = ({ onSidebarOpen, onAboutOpen }) => {
+const Header = ({ onAboutOpen }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const anchorRef = useRef(null);
@@ -65,26 +65,7 @@ const Header = ({ onSidebarOpen, onAboutOpen }) => {
         }}
       >
         <Toolbar sx={{ minHeight: 70 }}>
-          <Box
-            alignItems='center'
-            sx={{ display: { md: 'block', lg: 'none' } }}
-          >
-            <Button
-              color='inherit'
-              variant='outlined'
-              onClick={() => onSidebarOpen()}
-              aria-label='Menu'
-              sx={{
-                borderRadius: 2,
-                minWidth: 'auto',
-                padding: 1,
-                color: theme.palette.text.secondary,
-                borderColor: alpha(theme.palette.text.secondary, 0.2),
-              }}
-            >
-              <MenuIcon fontSize='medium' />
-            </Button>
-          </Box>
+          
           <Link to='/' style={{ textDecoration: 'none' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box
@@ -346,7 +327,6 @@ const Header = ({ onSidebarOpen, onAboutOpen }) => {
 };
 
 Header.propTypes = {
-  onSidebarOpen: PropTypes.func,
   onAboutOpen: PropTypes.func,
 };
 

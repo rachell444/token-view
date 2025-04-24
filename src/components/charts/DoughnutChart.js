@@ -141,7 +141,7 @@ const DoughnutChart = ({ chartData = [], loading, error }) => {
         align: 'center',
         padding: 25,
         labels: {
-          color: theme.palette.text.primary,
+          color: theme.palette.common.white,
           padding: 15,
           usePointStyle: true,
           pointStyle: 'circle',

@@ -46,59 +46,59 @@ TokenView Dashboard is a modern application for visualizing real-time cryptocurr
    ```
 
 3. Iniciar la aplicación
-   ```bash
-   npm start
-   ```
+```bash
+npm start
+```
 
-4. Abrir http://localhost:3000 en tu navegador
+4. Open http://localhost:3000 in your browser
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 src/
-├── components/      # Componentes reutilizables
-│   ├── charts/       # Componentes de gráficos (BarChart, PieChart, etc.)
-│   ├── statistics/    # Componentes de estadísticas
-│   └── tables/        # Componentes de tablas
-├── layout/          # Componentes de estructura (Header, Sidebar, etc.)
-├── pages/           # Páginas principales
-├── theme/           # Configuración del tema (colores, tipografía)
-├── tests/           # Pruebas unitarias
-└── index.js         # Punto de entrada
+├── components/      # Reusable components
+│   ├── charts/       # Chart components (BarChart, PieChart, etc.)
+│   ├── statistics/   # Statistics components
+│   └── tables/       # Table components
+├── layout/           # Layout components (Header, Sidebar, etc.)
+├── pages/            # Main pages
+├── theme/            # Theme configuration (colors, typography)
+├── tests/            # Unit tests
+└── index.js          # Entry point
 ```
 
-## Personalización
+## Customization
 
-### Colores
+### Colors
 
-Para modificar los colores, edita el archivo `src/theme/theme.js`.
+To modify the colors, edit the file `src/theme/theme.js`.
 
-### Tipografía
+### Typography
 
-Para cambiar las fuentes, añade la nueva fuente en `public/index.html` y modifica `src/theme/typography.js`.
+To change fonts, add the new font in `public/index.html` and modify `src/theme/typography.js`.
 
-### Gráficos
+### Charts
 
-Los gráficos se pueden personalizar editando los archivos en `src/components/charts/`.
+Charts can be customized by editing the files in `src/components/charts/`.
 
-## Pruebas
+## Testing
 
-Ejecuta las pruebas con el siguiente comando:
+Run tests with the following command:
 
 ```bash
 npm test
 ```
 
-## Contribución
+## Contribution
 
-Las contribuciones son bienvenidas. Para cambios importantes, por favor abre primero un issue para discutir lo que te gustaría cambiar.
+Contributions are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## Licencia
+## License
 
-Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
+This project is licensed under the MIT License – see the LICENSE file for details.
 
-## Contacto
+## Contact
 
 Rachell Moron - [@rachell444](https://github.com/rachell444)
 
-Link del proyecto: [https://github.com/rachell444/token-view](https://github.com/rachell444/token-view)
+Project link: [https://github.com/rachell444/token-view](https://github.com/rachell444/token-view)
