@@ -19,10 +19,10 @@ Chart.register(...registerables, Tooltip, Legend);
 const PolarAreaChart = ({ chartData = [], loading, error }) => {
   const theme = useTheme();
 
-  // Crear una referencia para el gráfico
+  // Create a reference for the chart
   const chartRef = useRef(null);
   
-  // Limpiar el gráfico cuando el componente se desmonta
+  // Clean up the chart when the component unmounts
   useEffect(() => {
     return () => {
       if (chartRef.current) {
@@ -144,7 +144,7 @@ const PolarAreaChart = ({ chartData = [], loading, error }) => {
             weight: 'bold',
             family: '"Roboto", "Helvetica", "Arial", sans-serif'
           },
-          // Forzamos a usar nombres personalizados para las leyendas
+          // Force custom legend labels
           generateLabels: function(chart) {
             const data = chart.data;
             if (data.labels.length && data.datasets.length) {
@@ -153,7 +153,7 @@ const PolarAreaChart = ({ chartData = [], loading, error }) => {
                 const style = meta.controller.getStyle(i);
                 
                 return {
-                  text: label, // Usamos el nombre de la moneda aquí
+                  text: label, // Use the coin name here
                   fillStyle: style.backgroundColor,
                   strokeStyle: style.borderColor,
                   lineWidth: style.borderWidth,

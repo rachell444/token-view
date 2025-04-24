@@ -7,7 +7,6 @@ import { faChartColumn as ChartColumnIcon } from '@fortawesome/free-solid-svg-ic
 
 import CustomCard from '../CustomCard';
 
-// ✅ Mover esto debajo de los imports evita el error de ESLint
 library.add(ChartColumnIcon);
 
 const MarketIndexes = () => {

@@ -34,18 +34,18 @@ import Spacer from '../components/Spacer';
 
 const Dashboard = () => {
   const theme = useTheme();
-  // Estado para About Modal
+  // State for About Modal
   const [aboutOpen, setAboutOpen] = useState(true);
   const handleAboutOpen = () => setAboutOpen(true);
   const handleAboutClose = () => setAboutOpen(false);
   
-  // Estado principal de datos
+  
   const [coinData, setCoinData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(new Date());
   
-  // Estado para notificaciones silenciosas
+  // State for silent update notifications
   const [showUpdateNotification, setShowUpdateNotification] = useState(false);
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const [silentData, setSilentData] = useState(null);
@@ -81,7 +81,7 @@ const Dashboard = () => {
     };
   }, [updateAvailable, silentData]);
   
-  // Función para aplicar actualizaciones pendientes
+  // Apply pending updates
   const applyPendingUpdate = () => {
     if (silentData) {
       setCoinData(silentData);
@@ -93,20 +93,20 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    // Función para obtener datos actualizados de criptomonedas
+    // Fetch updated cryptocurrency data
     const fetchData = async () => {
-      // Si es la primera carga, mostramos loading, de lo contrario es silencioso
+      
       if (coinData.length === 0) {
         setLoading(true);
       }
       setError(null);
       
       try {
-        // Añadimos timestamp para evitar caché en la petición y asegurar respuesta actualizada
+        // Add timestamp to avoid cache and ensure fresh response
         const timestamp = new Date().getTime();
         console.log('Iniciando petición a CoinGecko a las', new Date().toLocaleTimeString());
         
-        // Usamos la versión PRO de la API de CoinGecko para evitar limitaciones de tasa
+        // Use CoinGecko PRO API to avoid rate limits
         // Agregamos un parámetro x-cg-pro-api-key con el valor 'CG-z4brQCzLvdWs9VNksoP9JUC9'
         const response = await axios.get(
           `https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=250&page=1&sparkline=false&_=${timestamp}`,
@@ -150,7 +150,7 @@ const Dashboard = () => {
       } catch (err) {
         console.error('Error obteniendo datos en tiempo real:', err);
         
-        // Intentamos con una API alternativa si la principal falla
+        // Try alternative API if the main one fails
         try {
           console.log('CoinGecko falló, intentando con API alternativa CoinCap...');
           // API alternativa como respaldo
@@ -206,7 +206,7 @@ const Dashboard = () => {
         } catch (fallbackError) {
           console.error('Error en API alternativa:', fallbackError);
           
-          // Como último recurso, usamos datos de muestra actualizados con precios actuales aproximados
+          // As a last resort, use sample data with approximate current prices
           try {
             console.log('Usando datos de muestra actualizados');
             const updateTime = new Date();
@@ -383,7 +383,3 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-// Cambios realizados:
-// - Se integró AboutModal y se muestra al inicio y al hacer click en el icono de About en el Header.
-// - Se agregó el estado aboutOpen y los handlers para abrir/cerrar el modal.
-// - Se eliminó la navegación a /about y se reemplazó por la apertura del modal.

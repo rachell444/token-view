@@ -7,7 +7,6 @@ import { faChartArea as ChartAreaIcon } from '@fortawesome/free-solid-svg-icons'
 
 import CustomCard from '../CustomCard';
 
-// ✅ Esto va después de los imports
 library.add(ChartAreaIcon);
 
 const Exchanges = () => {

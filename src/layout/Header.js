@@ -36,7 +36,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ColorModeContext from '../components/ColorModeContext';
 import CustomButton from '../components/CustomButton';
 
-// 👇 Esto debe ir justo después de los imports
+
 library.add(faChartLine);
 
 const Header = ({ onSidebarOpen, onAboutOpen }) => {
@@ -88,20 +88,20 @@ const Header = ({ onSidebarOpen, onAboutOpen }) => {
           <Link to='/' style={{ textDecoration: 'none' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '12px',
-                  height: 38,
-                  width: 38,
-                  background: 'linear-gradient(135deg, #b993f4 0%, #5f72bd 100%)',
-                  boxShadow: '0 4px 12px 0 rgba(0,0,0,0.15)',
-                  mr: 1.5,
-                }}
-              >
-                <FontAwesomeIcon icon={faChartLine} style={{ fontSize: 22, color: '#fff' }} />
-              </Box>
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '10px',
+    height: 38,
+    width: 38,
+    background: 'linear-gradient(135deg, #b993f4 0%, #5f72bd 100%)',
+    boxShadow: '0 2px 8px rgba(95,114,189,0.13)',
+    mr: 1.2,
+  }}
+>
+  <FontAwesomeIcon icon={faChartLine} style={{ fontSize: 20, color: '#fff' }} />
+</Box>
               <Typography
                 variant='h3'
                 component='div'
@@ -221,15 +221,29 @@ const Header = ({ onSidebarOpen, onAboutOpen }) => {
                 display: 'flex',
               }}
             >
-              <Tooltip title='User Account'>
-                <Avatar
-                  sx={{
-                    height: 32,
-                    width: 32,
-                    backgroundColor: theme.palette.primary.main,
-                  }}
-                />
-              </Tooltip>
+              <Box
+  sx={{
+    width: 44,
+    height: 44,
+    borderRadius: '12px',
+    background: theme.palette.mode === 'dark'
+      ? alpha('#b993f4', 0.16)
+      : alpha('#b993f4', 0.10),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: 'none',
+    transition: 'background 0.18s cubic-bezier(.4,0,.2,1)',
+    cursor: 'pointer',
+    '&:hover': {
+      background: theme.palette.mode === 'dark'
+        ? alpha('#b993f4', 0.26)
+        : alpha('#b993f4', 0.18)
+    }
+  }}
+>
+  <UserIcon sx={{ color: '#fff', fontSize: 26 }} />
+</Box>
             </Box>
             <Popover
               anchorEl={anchorRef.current}
@@ -299,25 +313,27 @@ const Header = ({ onSidebarOpen, onAboutOpen }) => {
                   href='#'
                   sx={{
                     mt: 1.5,
-                    borderRadius: 2,
+                    borderRadius: 8,
                     borderWidth: 2,
                     borderColor: 'transparent',
                     background: 'linear-gradient(135deg, #b993f4 0%, #5f72bd 100%)',
                     color: '#fff',
-                    fontWeight: 700,
-                    fontSize: '1rem',
-                    letterSpacing: 0.04,
+                    fontWeight: 600,
+                    fontSize: '0.92rem',
+                    letterSpacing: '0.02em',
                     textTransform: 'none',
-                    boxShadow: '0 2px 8px rgba(95,114,189,0.10)',
-                    transition: 'all 0.18s cubic-bezier(.4,0,.2,1)',
+                    boxShadow: '0 1px 3px rgba(95,114,189,0.10)',
+                    minWidth: 80,
+                    padding: '4px 14px',
+                    transition: 'filter 0.18s cubic-bezier(.4,0,.2,1)',
+                    outline: 'none',
                     '&:hover': {
-                      background: 'linear-gradient(135deg, #5f72bd 0%, #b993f4 100%)',
+                      filter: 'brightness(1.08)',
                       color: '#fff',
-                      boxShadow: '0 6px 18px rgba(95,114,189,0.18)'
                     }
                   }}
                 >
-                  Logout
+                  <span style={{ fontSize: '0.85rem', fontWeight: 500 }}>Logout</span>
                 </Button>
               </Box>
             </Popover>

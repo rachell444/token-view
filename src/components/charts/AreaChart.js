@@ -23,10 +23,10 @@ const AreaChart = ({ chartData = [], loading, error }) => {
     defaultMatches: true,
   });
 
-  // Crear una referencia para el gráfico
+  // Create a reference for the chart
   const chartRef = useRef(null);
   
-  // Limpiar el gráfico cuando el componente se desmonta
+  // Clean up the chart when the component unmounts
   useEffect(() => {
     return () => {
       if (chartRef.current) {

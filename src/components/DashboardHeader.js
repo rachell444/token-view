@@ -60,5 +60,3 @@ const DashboardHeader = ({ onAboutOpen }) => {
 
 export default DashboardHeader;
 
-// Cambios:
-// - DashboardHeader ahora acepta y pasa onAboutOpen a Header para que el icono de About abra el modal.
