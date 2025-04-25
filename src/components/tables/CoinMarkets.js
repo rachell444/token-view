@@ -211,7 +211,24 @@ const CoinMarkets = ({ coins = [], loading, error }) => {
               background: `linear-gradient(90deg, ${alpha(theme.palette.divider, 0)}, ${alpha(theme.palette.divider, 0.7)}, ${alpha(theme.palette.divider, 0)})`
             }}
           />
-          <Box sx={{ minWidth: 1050, paddingBottom: 3, position: 'relative', zIndex: 1 }}>
+          <Box
+            sx={{
+              minWidth: 1050,
+              paddingBottom: 3,
+              position: 'relative',
+              zIndex: 1,
+              overflowX: 'auto', // Habilita el scroll horizontal
+              WebkitOverflowScrolling: 'touch', // Mejora el scroll en iOS
+              '&::-webkit-scrollbar': {
+                height: '8px',
+                background: alpha(theme.palette.background.paper, 0.3)
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: alpha(theme.palette.primary.main, 0.25),
+                borderRadius: '8px'
+              }
+            }}
+          >
             <Table>
               <TableHead>
                 <TableRow sx={{ '& th': { borderBottom: `2px solid ${alpha(theme.palette.divider, 0.2)}` } }}>

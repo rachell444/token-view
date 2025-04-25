@@ -107,17 +107,14 @@ const Dashboard = () => {
         console.log('Iniciando petición a CoinGecko a las', new Date().toLocaleTimeString());
         
         // Use CoinGecko PRO API to avoid rate limits
-        // Agregamos un parámetro 'x-cg-pro-api-key' desde una variable de entorno
-        // Set your CoinGecko PRO API key in a .env file as REACT_APP_CG_API_KEY
+        // Agregamos un parámetro x-cg-pro-api-key con el valor 'CG-z4brQCzLvdWs9VNksoP9JUC9'
         const response = await axios.get(
           `https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=250&page=1&sparkline=false&_=${timestamp}`,
           { 
             headers: { 
               'Accept': 'application/json',
-              // Añadimos clave de API Pro desde variable de entorno
-              'x-cg-pro-api-key': process.env.REACT_APP_CG_API_KEY,
               // Añadimos clave de API Pro
-              'x-cg-pro-api-key': process.env.REACT_APP_CG_API_KEY, // Set your CoinGecko PRO API key in a .env file as REACT_APP_CG_API_KEY
+              'x-cg-pro-api-key': 'CG-z4brQCzLvdWs9VNksoP9JUC9',
               // Eliminamos caché para asegurar datos actualizados
               'Cache-Control': 'no-cache, no-store, must-revalidate',
               'Pragma': 'no-cache',
@@ -286,7 +283,7 @@ const Dashboard = () => {
         <Box sx={{ p: 4, textAlign: 'center', color: 'red' }}>Error loading data</Box>
       )}
       <Helmet>
-        <title>Cryptocurrency Dashboard</title>
+        <title>TokenView</title>
       </Helmet>
       <Box
         sx={{
@@ -385,4 +382,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
